@@ -32,5 +32,34 @@ public class Jugador {
         }
         pokemones.add(p);
         return true;
+        
     }
+        public ArrayList<Pokemon> getEquipo() {
+            ArrayList<Pokemon> equipo = new ArrayList<>();
+            int limite = Math.min(6, pokemones.size());
+            for (int i = 0; i < limite; i++) {
+                equipo.add(pokemones.get(i));
+            }
+            return equipo;
+        }
+        public void curarTodos() {
+            for (int i = 0; i < pokemones.size(); i++) {
+                pokemones.get(i).setEstado("Vivo");
+            }
+            System.out.println("Tu equipo se ha recuperado!");
+        }
+        public boolean intercambiarPokemon(int num1, int num2) {
+            int i = num1 - 1;
+            int j = num2 - 1;
+     
+            if (i < 0 || j < 0 || i >= pokemones.size() || j >= pokemones.size()) {
+                return false;
+            }
+     
+            Pokemon temp = pokemones.get(i);
+            pokemones.set(i, pokemones.get(j));
+            pokemones.set(j, temp);
+            return true;
+        }
+
 }
