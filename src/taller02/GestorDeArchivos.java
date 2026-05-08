@@ -26,16 +26,16 @@ public class GestorDeArchivos {
                 if (p.length < 10) continue;
 
                 pokedex.add(new Pokemon(
-                    p[0],                        // nombre
-                    p[1],                        // habitat
-                    Double.parseDouble(p[2]),    // porcentajeAparicion
-                    Integer.parseInt(p[3]),      // vida
-                    Integer.parseInt(p[4]),      // ataque
-                    Integer.parseInt(p[5]),      // defensa
-                    Integer.parseInt(p[6]),      // ataqueEspecial
-                    Integer.parseInt(p[7]),      // defensaEspecial
-                    Integer.parseInt(p[8]),      // velocidad
-                    p[9]                         // tipo
+                    p[0],
+                    p[1],
+                    Double.parseDouble(p[2]),
+                    Integer.parseInt(p[3]),
+                    Integer.parseInt(p[4]),
+                    Integer.parseInt(p[5]),
+                    Integer.parseInt(p[6]),
+                    Integer.parseInt(p[7]),
+                    Integer.parseInt(p[8]),
+                    p[9]
                 ));
             }
             sc.close();
@@ -58,7 +58,7 @@ public class GestorDeArchivos {
                 if (linea.isEmpty()) continue;
 
                 Habitat h = new Habitat(linea);
-                
+
                 for (int i = 0; i < pokedex.size(); i++) {
                     if (pokedex.get(i).getHabitat().equalsIgnoreCase(linea)) {
                         h.agregarPokemon(pokedex.get(i));
@@ -74,6 +74,94 @@ public class GestorDeArchivos {
         }
 
         return habitats;
+    }
+
+    public static ArrayList<Gimnasio> cargarGimnasios(String rutaArchivo, ArrayList<Pokemon> pokedex) {
+        ArrayList<Gimnasio> gimnasios = new ArrayList<>();
+
+        try {
+            Scanner sc = new Scanner(new File(rutaArchivo));
+
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                if (linea.isEmpty()) continue;
+
+                String[] p = linea.split(";");
+                if (p.length < 4) continue;
+
+                int numero       = Integer.parseInt(p[0]);
+                String lider     = p[1];
+                String estado    = p[2];
+                int cantPokemons = Integer.parseInt(p[3]);
+
+                ArrayList<Pokemon> pokemonesGimnasio = new ArrayList<>();
+
+                for (int i = 4; i < 4 + cantPokemons && i < p.length; i++) {
+                    boolean encontrado = false;
+                    for (int j = 0; j < pokedex.size(); j++) {
+                        if (pokedex.get(j).getNombre().equalsIgnoreCase(p[i])) {
+                            pokemonesGimnasio.add(new Pokemon(pokedex.get(j)));
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        pokemonesGimnasio.add(new Pokemon(p[i]));
+                    }
+                }
+
+                gimnasios.add(new Gimnasio(numero, lider, estado, pokemonesGimnasio));
+            }
+            sc.close();
+
+        } catch (IOException e) {
+            System.out.println("No se pudo leer " + rutaArchivo);
+        }
+
+        return gimnasios;
+    }
+
+    public static ArrayList<MiembroAltoMando> cargarAltoMando(String rutaArchivo, ArrayList<Pokemon> pokedex) {
+        ArrayList<MiembroAltoMando> altoMando = new ArrayList<>();
+
+        try {
+            Scanner sc = new Scanner(new File(rutaArchivo));
+
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                if (linea.isEmpty()) continue;
+
+                String[] p = linea.split(";");
+                if (p.length < 3) continue;
+
+                int numero    = Integer.parseInt(p[0]);
+                String nombre = p[1];
+
+                ArrayList<Pokemon> pokemonesMiembro = new ArrayList<>();
+
+                for (int i = 2; i < p.length; i++) {
+                    boolean encontrado = false;
+                    for (int j = 0; j < pokedex.size(); j++) {
+                        if (pokedex.get(j).getNombre().equalsIgnoreCase(p[i])) {
+                            pokemonesMiembro.add(new Pokemon(pokedex.get(j)));
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        pokemonesMiembro.add(new Pokemon(p[i]));
+                    }
+                }
+
+                altoMando.add(new MiembroAltoMando(numero, nombre, pokemonesMiembro));
+            }
+            sc.close();
+
+        } catch (IOException e) {
+            System.out.println("No se pudo leer " + rutaArchivo);
+        }
+
+        return altoMando;
     }
 
     public static Jugador cargarRegistros(String rutaArchivo, ArrayList<Pokemon> pokedex) {

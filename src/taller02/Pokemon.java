@@ -46,6 +46,12 @@ public class Pokemon {
         this.tipo                = otro.tipo;
         this.estado              = otro.estado;
     }
+    public Pokemon(String nombre) {
+        this.nombre  = nombre;
+        this.estado  = "Vivo";
+        this.habitat = "none";
+        this.tipo    = "Normal";
+    }
 
     public String getNombre() { 
     	return nombre; }

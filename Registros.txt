@@ -1,4 +1,4 @@
-zzz;ninguno
+zzz;ninguno,EmmaLaArdillaRabiosa
 Shiftry;Vivo
 Aerodactyl;Vivo
 Tentacruel;Vivo
