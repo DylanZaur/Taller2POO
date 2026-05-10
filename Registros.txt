@@ -1,4 +1,11 @@
-zzz;ninguno,EmmaLaArdillaRabiosa
-Shiftry;Vivo
-Aerodactyl;Vivo
-Tentacruel;Vivo
+Dylan;ninguna
+Crobat;Vivo
+Victini;Vivo
+Plusle;Vivo
+Victreebel;Vivo
+Gyarados;Vivo
+Quagsire;Vivo
+Milotic;Vivo
+Golduck;Vivo
+Garganacl;Vivo
+Psyduck;Vivo

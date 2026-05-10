@@ -36,8 +36,11 @@ public class Jugador {
 
     public ArrayList<Pokemon> getEquipo() {
         ArrayList<Pokemon> equipo = new ArrayList<>();
-        int limite = Math.min(6, pokemones.size());
-        for (int i = 0; i < limite; i++) {
+        for (int i = 0; i < pokemones.size(); i++) {
+            if (i == 6) {
+            	break;
+            }
+
             equipo.add(pokemones.get(i));
         }
         return equipo;

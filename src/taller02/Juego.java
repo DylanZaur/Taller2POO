@@ -43,7 +43,7 @@ public class Juego {
 					System.out.println("Ingrese su apodo de jugador:");
 					System.out.print("> ");
 					String apodo = menu.nextLine();
-					jugador = new Jugador(apodo, "ninguno");
+					jugador = new Jugador(apodo, "ninguna");
 					GestorDeArchivos.guardarRegistros("Registros.txt", jugador);
 					System.out.println("Bienvenid@, " + apodo + "!");
 					menuSecundario(menu);
@@ -326,8 +326,8 @@ public class Juego {
 			}
 		}
 
-		System.out.println("FELICIDADES " + jugador.getNombreCuenta().toUpperCase() + "!!");
-		System.out.println("Has derrotado al Alto Mando y te has coronado CAMPEON!");
+		System.out.println("FELICIDADES " + jugador.getNombreCuenta() + "!!");
+		System.out.println("Has derrotado al Alto Mando y te has coronado campeon!");
 	}
 
 	static boolean combatir(Scanner menu, Pokemon pokemonJugador,

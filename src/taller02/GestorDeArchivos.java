@@ -129,10 +129,14 @@ public class GestorDeArchivos {
 
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
-                if (linea.isEmpty()) continue;
+                if (linea.isEmpty()) {
+                	continue;
+                }
 
                 String[] p = linea.split(";");
-                if (p.length < 3) continue;
+                if (p.length < 3) {
+                	continue;
+                }
 
                 int numero    = Integer.parseInt(p[0]);
                 String nombre = p[1];
@@ -186,16 +190,20 @@ public class GestorDeArchivos {
             if (datos.length > 1) {
                 medallas = datos[1];
             } else {
-                medallas = "Ninguna";
+                medallas = "ninguna";
             }
             jugador = new Jugador(nombre, medallas);
 
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
-                if (linea.isEmpty()) continue;
+                if (linea.isEmpty()) {
+                	continue;
+                }
 
                 String[] partes = linea.split(";");
-                if (partes.length < 2) continue;
+                if (partes.length < 2) {
+                	continue;
+                }
 
                 for (int i = 0; i < pokedex.size(); i++) {
                     if (pokedex.get(i).getNombre().equalsIgnoreCase(partes[0])) {
