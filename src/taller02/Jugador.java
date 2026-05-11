@@ -5,6 +5,8 @@ package taller02;
 
 import java.util.ArrayList;
 
+// Clase para obtener la partida del jugador sus pokemones,medallas y el user.
+
 public class Jugador {
 
     private String nombreCuenta;

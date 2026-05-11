@@ -3,6 +3,9 @@
 // Ingeniería Civil Industrial
 package taller02;
 
+
+// Clase para recorrer la tabla de tipos
+
 public class TablaTipos {
 
     private static final String[] TIPOS = {
@@ -39,6 +42,9 @@ public class TablaTipos {
         int fila   = -1;
         int columna = -1;
 
+        // usa la fila para el tipo de pokemon del atacante( que seria nuestro pokemon )
+        // y la columna para el tipo del pokemon defensor ( pokemon del lider de gimnasio o del alto mando)
+        
         for (int i = 0; i < TIPOS.length; i++) {
             if (TIPOS[i].equalsIgnoreCase(tipoAtacante)) {
                 fila = i;

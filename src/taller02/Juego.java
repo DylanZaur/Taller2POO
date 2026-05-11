@@ -6,6 +6,8 @@ package taller02;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Clase juego donde se ejecuta el juego en si (Menú y todo)
+
 public class Juego {
 	static ArrayList<Pokemon>          pokedex   = new ArrayList<>();
 	static ArrayList<Habitat>          habitats  = new ArrayList<>();
@@ -21,7 +23,7 @@ public class Juego {
 		habitats  = GestorDeArchivos.cargarHabitats("Habitats.txt", pokedex);
 		gimnasios = GestorDeArchivos.cargarGimnasios("Gimnasios.txt", pokedex);
 		altoMando = GestorDeArchivos.cargarAltoMando("Alto Mando.txt", pokedex);
-
+		// ----- Menú principal -----
 		do {
 			System.out.println("Bienvenid@ al juego");
 			System.out.println("1) Continuar.");
@@ -57,7 +59,7 @@ public class Juego {
 		} while (opcionMenuPrincipal < 1 || opcionMenuPrincipal > 3);
 		menu.close();
 	}
-
+	//----- Menú secundario -----
 	static void menuSecundario(Scanner menu) {
 		int opcionMenuSecundario;
 		do {
@@ -103,7 +105,10 @@ public class Juego {
 
 		} while (opcionMenuSecundario != 8);
 	}
-
+	
+	// Opción o case 1 del menú secundario, donde se printea el equipo del jugador (osea los 6 primeros pokes)
+	// se printea el tipo,la suma de sus stats y por último su estado.
+	
 	static void revisarEquipo() {
 		ArrayList<Pokemon> equipo = jugador.getEquipo();
 
@@ -120,6 +125,11 @@ public class Juego {
 					+ " | Estado: " + equipo.get(i).getEstado());
 		}
 	}
+	
+	// Opción o case 2 del menú secundario, donde se printea las zonas existentes
+	// luego se puede seleccionar una de estas zonas para que luego, aparezca un pokemon
+	// el cual se elige usando generarPokemonAleatorio()
+	// luego que el pokemon aparece, tienes la opción de capturarlo o huir
 
 	static void salirACapturar(Scanner menu) {
 		int opcionZona;
@@ -175,7 +185,12 @@ public class Juego {
 
 		} while (true);
 	}
-
+	
+	// Opción o case 3 del menú secundario, muestran todos los pokemon capturados por el jugador
+	// se printea los nombre de los pokemon,tipo,estado y si esta en el PC o en el equipo
+	// dentro de esta opción hay 2 opciones CAMBIAR POKEMON O SALIR
+	// la opcion Cambiar pokemon permite seleccionar 2 pokemon para cambiar de lugar.
+	
 	static void accesoPC(Scanner menu) {
 		int opcionPC;
 		do {
@@ -199,7 +214,7 @@ public class Juego {
 						+ " | Estado: " + todos.get(i).getEstado()
 						+ " [" + lugar + "]");
 			}
-
+			
 			System.out.println("1) Cambiar Pokemon.");
 			System.out.println("2) Salir.");
 			System.out.print("Ingrese Opcion: ");
@@ -222,7 +237,11 @@ public class Juego {
 
 		} while (opcionPC != 2);
 	}
-
+	
+	// Opción o case 4 del menú secundario, muestran todos los gimnasios que tienes que derrotar y si lo derrotaste o no
+	// la opción de desafiar es secuencial, osea no puedes retar al 3ro sin haber derrotado al 1ro y el 2do
+	// cuando enfrentas al gimnasio tendras 3 opciones atacar,cambiar de pokemon o rendirse
+	
 	static void retarGimnasio(Scanner menu) {
 		System.out.println("Gimnasios");
 		for (int i = 0; i < gimnasios.size(); i++) {
@@ -275,7 +294,12 @@ public class Juego {
 			System.out.println("Medallas: " + jugador.getMedallas());
 		}
 	}
-
+	
+	// Opción o case 5 del menú secundario,que es desafiar al alto mando
+	// para desafiarlo necesitas primero ganarle a todos los lideres de gimnasios antes
+	// aqui tienes que ganarle a todos los del alto mando de seguido
+		
+	
 	static void desafiarAltoMando(Scanner menu) {
 		if (jugador.getCantMedallas() < 8) {
 			System.out.println("Necesitas las 8 medallas para desafiar al Alto Mando!");
@@ -329,7 +353,13 @@ public class Juego {
 		System.out.println("FELICIDADES " + jugador.getNombreCuenta() + "!!");
 		System.out.println("Has derrotado al Alto Mando y te has coronado campeon!");
 	}
-
+	
+	// es el sistema de combate se usa tanto en los gimnasios como en el alto mando
+	// usa la tabla de tipos entregada para multiplicar las stats de nuestro pokemon segun sea el caso
+	// ademas de esto imprime el "es efectivo contra" cuando el multiplicador es 2
+	// "no es efectivo" cuando el multiplicador es 0.5
+	// y por ultimo "no tiene efecto" cuando el multiplicador es 0.
+	
 	static boolean combatir(Scanner menu, Pokemon pokemonJugador,
 			String nombreRival, ArrayList<Pokemon> pokemonesRival) {
 

@@ -3,6 +3,8 @@
 // Ingeniería Civil Industrial
 package taller02;
 
+// Clase para obtener todos los aspectos de los pokemones tipeados en el archivo pokedex
+
 public class Pokemon {
 
     private String nombre;

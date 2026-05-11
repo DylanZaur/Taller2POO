@@ -3,6 +3,8 @@
 // Ingeniería Civil Industrial
 package taller02;
 
+// Clase para leer los archivos y mantener un orden en las demás clases.
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

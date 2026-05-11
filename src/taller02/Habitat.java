@@ -6,6 +6,8 @@ package taller02;
 import java.util.ArrayList;
 import java.util.Random;
 
+// Clase para obtener el nombre de las habitats y el pokemon random
+
 public class Habitat {
 
     private String nombre;

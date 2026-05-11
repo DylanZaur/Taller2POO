@@ -5,6 +5,8 @@ package taller02;
 
 import java.util.ArrayList;
 
+//Clase para los lideres de gimnasio y obtener sus nombres y pokemon.
+
 public class Gimnasio {
 
     private int numero;
